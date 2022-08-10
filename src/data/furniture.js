@@ -1,4 +1,4 @@
-export const furnitures = [{
+export const furniture = [{
     id: 't1',
     category: 'table',
     name: 'Mesa 1',

@@ -1,1 +1,1 @@
-export * from './getFurnitures';
+export * from './getFurnitureList';

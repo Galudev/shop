@@ -1,1 +1,1 @@
-export * from './furnitures';
+export * from './furniture';
