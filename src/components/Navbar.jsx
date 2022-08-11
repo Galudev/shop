@@ -10,13 +10,11 @@ export const Navbar = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-
     const { q = '' } = queryString.parse(location.search);
 
     const { name, onInputChange } = useForm({ name: q });
     const onSearch = (event) => {
         event.preventDefault();
-        localStorage.setItem('nameFurniture', name);
         navigate(`search?q=${name}`);
     }
 
@@ -30,9 +28,9 @@ export const Navbar = () => {
                         Filtro
                     </Link>
                     <div className="dropdown-menu ms-4">
-                        <NavLink className="dropdown-item" to="/tables">Mesas</NavLink>
+                        <NavLink className="dropdown-item" to='/table' >Mesas</NavLink>
                         <hr className="dropdown-divider" />
-                        <NavLink className="dropdown-item" to="/chairs">Sillas</NavLink>
+                        <NavLink className="dropdown-item" to='/chair' >Sillas</NavLink>
                     </div>
                     <NavLink className="nav-item nav-link" to="/contact">Contacto</NavLink>
                 </div>
