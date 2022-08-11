@@ -2,7 +2,6 @@ import { IconButton } from "@mui/material"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 // TODO: poner data con useState
-// TODO: guardar objeto con id y cantidad
 // TODO: Mostrar alerta añadir de nuevo
 export const ShopItem = ({ furniture }) => {
 
@@ -10,7 +9,15 @@ export const ShopItem = ({ furniture }) => {
 
     const addToBuy = (event) => {
         data = JSON.parse(localStorage.getItem('buy')) ?? [];
-        data = [...data, furniture.id];
+        let exist = false
+        for (let item of data) {
+            if (item.id === furniture.id) {
+                item.count += 1;
+                exist = true;
+                break;
+            }
+        }
+        if (!exist) data = [...data, { id: furniture.id, count: 1 }];
         localStorage.setItem('buy', JSON.stringify(data));
     }
 
