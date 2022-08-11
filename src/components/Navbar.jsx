@@ -10,6 +10,7 @@ export const Navbar = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+
     const { q = '' } = queryString.parse(location.search);
 
     const { name, onInputChange } = useForm({ name: q });
