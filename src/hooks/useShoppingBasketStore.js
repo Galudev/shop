@@ -32,11 +32,16 @@ export const useShoppingBasketStore = () => {
         const count = shoppingBasketList.filter(item => item.id === id)[0].count;
         if (count > 1) {
             dispatch(onDecrementItem(id));
+            dispatch(onSaveList());
         } else {
-            dispatch(onDeleteItem(id));
+            deletingItem(id);
         }
-        dispatch(onSaveList());
     };
+
+    const deletingItem = (id) => {
+        dispatch(onDeleteItem(id));
+        dispatch(onSaveList());
+    }
 
     return {
         shoppingBasketList,
@@ -44,6 +49,7 @@ export const useShoppingBasketStore = () => {
         startLoadingList,
         startAddingItem,
         incrementItem,
-        startDeletingItem
+        startDeletingItem,
+        deletingItem
     }
 }
