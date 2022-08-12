@@ -37,7 +37,7 @@ export const Navbar = () => {
                 </div>
 
                 <div className="navbar-collapse d-flex justify-content-end">
-                    <NavLink className="nav-item nav-link" to="/buy"><ShoppingCartIcon /></NavLink>
+                    <NavLink className="nav-item nav-link" to="/shoppingBasket"><ShoppingCartIcon /></NavLink>
                     <form
                         className="d-flex justify-content-end ms-4"
                         role="search"

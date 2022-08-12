@@ -29,8 +29,8 @@ export const useShoppingBasketStore = () => {
     }
 
     const startDeletingItem = (id) => {
-        const exist = shoppingBasketList.some(item => item.id === id)
-        if (exist) {
+        const count = shoppingBasketList.filter(item => item.id === id)[0].count;
+        if (count > 1) {
             dispatch(onDecrementItem(id));
         } else {
             dispatch(onDeleteItem(id));
@@ -39,6 +39,8 @@ export const useShoppingBasketStore = () => {
     };
 
     return {
+        shoppingBasketList,
+
         startLoadingList,
         startAddingItem,
         incrementItem,

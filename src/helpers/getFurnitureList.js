@@ -13,6 +13,10 @@ export const getFurnitureByName = (name) => {
     return furniture.filter(item => item.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
 }
 
+export const getFurnitureById = (id) => {
+    return furniture.filter(item => item.id === id)[0];
+}
+
 const shuffle = (array) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
 

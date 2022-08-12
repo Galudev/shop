@@ -11,9 +11,9 @@ export const shoppingBasketSlice = createSlice({
         onAddItem: (state, { payload }) => {
             state.shoppingBasketList.push({ id: payload, count: 1 });
         },
-        onIncrementItem: (state) => {
+        onIncrementItem: (state, { payload = state.active }) => {
             state.shoppingBasketList = state.shoppingBasketList.map(item => {
-                if (item.id === state.active) {
+                if (item.id === payload) {
                     item.count += 1;
                 }
                 return item;
