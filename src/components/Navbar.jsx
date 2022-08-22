@@ -25,13 +25,15 @@ export const Navbar = () => {
 
             <div className="navbar-collapse">
                 <div className="navbar-nav">
-                    <Link className="nav-item nav-link dropdown-toggle active" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtro
-                    </Link>
-                    <div className="dropdown-menu ms-4">
-                        <NavLink className="dropdown-item" to='/table' >Mesas</NavLink>
-                        <hr className="dropdown-divider" />
-                        <NavLink className="dropdown-item" to='/chair' >Sillas</NavLink>
+                    <div className='nav-item btn-group'>
+                        <NavLink className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filtro
+                        </NavLink>
+                        <div className="dropdown-menu dropdown-menu-start">
+                            <NavLink className="dropdown-item" to='/table' >Mesas</NavLink>
+                            <hr className="dropdown-divider" />
+                            <NavLink className="dropdown-item" to='/chair' >Sillas</NavLink>
+                        </div>
                     </div>
                     <NavLink className="nav-item nav-link" to="/contact">Contacto</NavLink>
                 </div>
