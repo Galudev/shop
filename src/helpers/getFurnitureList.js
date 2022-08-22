@@ -1,7 +1,7 @@
 import { furniture } from "../data"
 
 export const getFurnitureByCategory = (category) => {
-    return shuffle(furniture.filter(item => item.category === category));
+    return furniture.filter(item => item.category === category);
 }
 
 export const getFurniture = () => {
