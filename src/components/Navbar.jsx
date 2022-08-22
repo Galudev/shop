@@ -26,9 +26,9 @@ export const Navbar = () => {
             <div className="navbar-collapse">
                 <div className="navbar-nav">
                     <div className='nav-item btn-group'>
-                        <NavLink className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Filtro
-                        </NavLink>
+                        </Link>
                         <div className="dropdown-menu dropdown-menu-start">
                             <NavLink className="dropdown-item" to='/table' >Mesas</NavLink>
                             <hr className="dropdown-divider" />
