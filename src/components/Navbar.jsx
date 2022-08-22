@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import { useForm } from '../hooks/useForm';
 // NavLink o Link de react router dom para que no se recargue toda la página
 
-// TODO: Implementar página de contacto y el carrito
+// TODO: Implementar página de contacto
 
 export const Navbar = () => {
 
@@ -39,9 +39,8 @@ export const Navbar = () => {
                 </div>
 
                 <div className="navbar-collapse d-flex justify-content-end">
-                    <NavLink className="nav-item nav-link" to="/shoppingBasket"><ShoppingCartIcon /></NavLink>
                     <form
-                        className="d-flex justify-content-end ms-4"
+                        className="d-flex justify-content-end"
                         role="search"
                         onSubmit={onSearch}
                     >
@@ -56,6 +55,7 @@ export const Navbar = () => {
                         />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    <NavLink className="nav-item nav-link me-3 ms-3" to="/shoppingBasket"><ShoppingCartIcon /></NavLink>
                 </div>
             </div>
         </nav>
