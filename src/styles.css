@@ -1,3 +1,33 @@
+.navbar-shop {
+    background-color: #131921;
+    color: #ffffff;
+}
+
+.nav-item {
+    color: #ffffff;
+}
+
+.nav-category-list {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.field-search {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.btn-search-shop {
+    border-radius: 0px 4px 4px 0px;
+    background-color: #febd69;
+    color: #333333;
+    pointer-events: visibleFill;
+}
+
+.btn-search-shop:hover {
+    background-color: #eea74a;
+    color: #333333;
+}
+
 .contact {
     margin-top: 15%;
 }
