@@ -4,9 +4,10 @@ import queryString from 'query-string';
 import { getFurniture, getFurnitureByCategory, getFurnitureByName } from "./helpers";
 import { ShopList } from "./pages";
 import { useShoppingBasketStore } from "./hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BasketList } from "./pages/shoppingBasket/BasketList";
 
+const furnitureList = getFurniture();
 
 export const Shop = () => {
 
@@ -14,10 +15,15 @@ export const Shop = () => {
     const { q = '' } = queryString.parse(location.search);
 
     const { startLoadingList, shoppingBasketList } = useShoppingBasketStore();
+    const [furnitureListByName, setFurnitureListByName] = useState([]);
 
     useEffect(() => {
         startLoadingList();
     }, []);
+
+    useEffect(() => {
+        setFurnitureListByName(getFurnitureByName(q));
+    }, [q]);
 
     return (
         <>
@@ -25,8 +31,8 @@ export const Shop = () => {
 
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<ShopList furnitures={getFurniture()} />} />
-                    <Route path="/search" element={<ShopList furnitures={getFurnitureByName(q)} />} />
+                    <Route path="/" element={<ShopList furnitures={furnitureList} />} />
+                    <Route path="/search" element={<ShopList furnitures={furnitureListByName} />} />
                     <Route path="/table" element={<ShopList furnitures={getFurnitureByCategory('table')} />} />
                     <Route path="/chair" element={<ShopList furnitures={getFurnitureByCategory('chair')} />} />
                     <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
