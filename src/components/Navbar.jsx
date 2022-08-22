@@ -4,7 +4,6 @@ import queryString from 'query-string';
 import { useForm } from '../hooks/useForm';
 // NavLink o Link de react router dom para que no se recargue toda la página
 
-// TODO: Implementar página de contacto
 
 export const Navbar = () => {
 
@@ -26,7 +25,7 @@ export const Navbar = () => {
             <div className="navbar-collapse">
                 <div className="navbar-nav">
                     <div className='nav-item btn-group'>
-                        <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <Link className="nav-link dropdown-toggle active" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Filtro
                         </Link>
                         <div className="dropdown-menu dropdown-menu-start">
