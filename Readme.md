@@ -1,0 +1,23 @@
+# Página web para una tienda de muebles
+
+** Este documento contará con las funcionalidades que quedan pendientes de implementar, así como futuros cambios sobre las funcionalidades o el diseño ya creado.
+
+## Modificaciones
+* Rediseñar la página principal.
+* Rediseñar las tarjetas de los productos.
+* Rediseñar la página del carrito.
+
+## Nuevas funcionalidades
+* Añadir aviso de elemento no encontrado en búsquedas fallidas.
+* Añadir aviso de carrito vacío cuando aún no hay nada y se entra a la página del carrito.
+* Añadir icono con el número de items en el carrito en el navbar.
+* Añadir animaciones/transiciones agradables.
+* Añadir funcionamiento de la página de contacto.
+* Implementar una página de autenticación para los usuarios.
+* Implementar formalización de la compra.
+
+## Modificaciones/Implementaciones con impacto por estudiar
+* Modificar las opciones de filtro por categoría para automatizarlo.
+
+## Nuevos proyectos
+* Realizar API para base de datos de los productos, usuarios y carrito.
