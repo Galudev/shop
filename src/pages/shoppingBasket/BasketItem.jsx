@@ -23,23 +23,23 @@ export const BasketItem = ({ furniture }) => {
 
     return (
         <div className="col-12">
-            <div className="card mb-3 mt-3">
+            <div className="card mb-2 mt-2">
                 <div className="row g-0">
-                    <div className="col-md-2">
-                        <img src={furniture.img} className="img-fluid rounded-start" alt={furniture.name} />
+                    <div className="col-5 col-sm-5 col-md-4 col-lg-3 col-xl-2 d-flex align-items-center justify-content-center">
+                        <img src={furniture.img} className="img-fluid rounded-start p-2" alt={furniture.name} />
                     </div>
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">{furniture.name}</h5>
-                            <p className="card-text">{furniture.price}</p>
+                    <div className="col-7 col-sm-7 col-md-8 col-lg-9 col-xl-10 card-body pe-2 ps-2 p-4 m-0 d-flex flex-row">
+                        <div className="col-6 col-sm-7 col-md-8 col-lg-9 col-xl-10 d-flex flex-column justify-content-between">
+                            <h5 className="card-title text-truncate fs-2">{furniture.name}</h5>
+                            <p className="card-text fs-5 mb-2">{furniture.price}</p>
                         </div>
-                    </div>
-                    <div className="col-md-2">
-                        <div className="card-body">
-                            <IconButton className="card-text btn position-absolute top-0 end-0 m-4" onClick={onDelete}><DeleteIcon /></IconButton>
-                            <div className="position-absolute bottom-0 end-0 m-4">
+                        <div className="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 d-flex flex-column justify-content-between">
+                            <div className="d-flex justify-content-center">
+                                <IconButton className="card-text btn p-0" onClick={onDelete}><DeleteIcon /></IconButton>
+                            </div>
+                            <div className="d-flex justify-content-center align-content-center">
                                 <IconButton className="card-text btn" onClick={onClickDel}><RemoveIcon /></IconButton>
-                                <div className="card-text d-inline m-1 ">{furniture.count}</div>
+                                <div className="card-text d-inline m-1">{furniture.count}</div>
                                 <IconButton className="card-text btn mt-auto p-2 bd-highlight" onClick={onClickAdd}><AddIcon /></IconButton>
                             </div>
                         </div>

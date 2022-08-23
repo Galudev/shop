@@ -10,14 +10,12 @@ export const BasketList = ({ furniture }) => {
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                {
-                    furnitureForShopping.map((furniture) => (
-                        <BasketItem key={furniture.id} furniture={furniture} />
-                    ))
-                }
-            </div>
+        <div className="row">
+            {
+                furnitureForShopping.map((furniture) => (
+                    <BasketItem key={furniture.id} furniture={furniture} />
+                ))
+            }
         </div>
     )
 }
