@@ -24,9 +24,10 @@ export const shoppingBasketSlice = createSlice({
         },
         onDeleteItem: (state, { payload }) => {
             for (let i = 0; i < state.shoppingBasketList.length; i++) {
-                if (state.shoppingBasketList[i].id === payload)
+                if (state.shoppingBasketList[i].id === payload) {
                     state.count -= state.shoppingBasketList[i].count;
-                break;
+                    break;
+                }
             }
             state.shoppingBasketList = state.shoppingBasketList.filter(item => item.id !== payload)
         },

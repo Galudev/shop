@@ -2,9 +2,6 @@
 
 ** Este documento contará con las funcionalidades que quedan pendientes de implementar, así como futuros cambios sobre las funcionalidades o el diseño ya creado.
 
-## Modificaciones
-* Rediseñar la página del carrito.
-
 ## Nuevas funcionalidades
 * Añadir aviso de elemento no encontrado en búsquedas fallidas.
 * Añadir aviso de carrito vacío cuando aún no hay nada y se entra a la página del carrito.
