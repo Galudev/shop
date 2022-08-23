@@ -31,11 +31,11 @@ export const Shop = () => {
 
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<ShopList furnitures={furnitureList} />} />
+                    <Route path="/" element={<ShopList furniture={furnitureList} />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/search" element={<ShopList furnitures={furnitureListByName} />} />
-                    <Route path="/table" element={<ShopList furnitures={getFurnitureByCategory('table')} />} />
-                    <Route path="/chair" element={<ShopList furnitures={getFurnitureByCategory('chair')} />} />
+                    <Route path="/search" element={<ShopList furniture={furnitureListByName} />} />
+                    <Route path="/table" element={<ShopList furniture={getFurnitureByCategory('table')} />} />
+                    <Route path="/chair" element={<ShopList furniture={getFurnitureByCategory('chair')} />} />
                     <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
                     <Route path="/*" element={<Navigate to="/" />} />
                 </Routes>

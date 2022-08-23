@@ -1,13 +1,21 @@
+import { EmptyList } from "../components";
 import { ShopItem } from "./ShopItem"
 
-export const ShopList = ({ furnitures }) => {
+export const ShopList = ({ furniture }) => {
+
+    const isEmpty = furniture.length === 0;
+
     return (
-        <div className="row">
-            {
-                furnitures.map((furniture) => (
-                    <ShopItem key={furniture.id} furniture={furniture} />
-                ))
-            }
-        </div>
+        <>
+            <div className="row">
+                {
+                    furniture.map((furniture) => (
+                        <ShopItem key={furniture.id} furniture={furniture} />
+                    ))
+                }
+            </div>
+
+            <EmptyList isEmpty={isEmpty} message="No se ha encontrado ningún elemento" />
+        </>
     )
 }
