@@ -8,7 +8,6 @@
 ## Nuevas funcionalidades
 * Añadir aviso de elemento no encontrado en búsquedas fallidas.
 * Añadir aviso de carrito vacío cuando aún no hay nada y se entra a la página del carrito.
-* Añadir icono con el número de items en el carrito en el navbar.
 * Añadir animaciones/transiciones agradables.
 * Añadir funcionamiento de la página de contacto.
 * Añadir página de detalles de un elemento.

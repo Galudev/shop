@@ -1,8 +1,9 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useForm } from '../hooks/useForm';
-import { IconButton } from "@mui/material";
+import { Badge, IconButton } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
+import { useShoppingBasketStore } from "../hooks";
 // NavLink o Link de react router dom para que no se recargue toda la página
 
 
@@ -16,6 +17,8 @@ export const Navbar = () => {
         onResetForm();
         navigate(`search?q=${name}`);
     }
+
+    const { count } = useShoppingBasketStore();
 
     return (
         <nav className="navbar navbar-expand p-2 navbar-shop navbar-dark">
@@ -51,11 +54,15 @@ export const Navbar = () => {
                             onChange={onInputChange}
                         />
                         <div className="btn-search-shop">
-                            <IconButton className="btn" type="submit"><SearchIcon /></IconButton>
+                            <IconButton className="btn" type="submit" style={{ color: "#333333" }}><SearchIcon /></IconButton>
                         </div>
                     </form>
 
-                    <NavLink className="nav-item nav-link me-3 ms-3" to="/shoppingBasket"><ShoppingCartIcon /></NavLink>
+                    <NavLink className="nav-item nav-link me-3 ms-3 btn-basket" to="/shoppingBasket">
+                        <Badge color="warning" badgeContent={count}>
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </NavLink>
                 </div>
             </div>
         </nav>
