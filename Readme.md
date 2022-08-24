@@ -3,7 +3,6 @@
 ** Este documento contará con las funcionalidades que quedan pendientes de implementar, así como futuros cambios sobre las funcionalidades o el diseño ya creado.
 
 ## Nuevas funcionalidades
-* Añadir animaciones/transiciones agradables.
 * Añadir funcionamiento de la página de contacto.
 * Añadir página de detalles de un elemento.
 * Implementar una página de autenticación para los usuarios.

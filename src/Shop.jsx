@@ -6,6 +6,7 @@ import { Contact, ShopList } from "./pages";
 import { useShoppingBasketStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { BasketList } from "./pages/shoppingBasket/BasketList";
+import { CSSTransition } from "react-transition-group";
 
 const furnitureList = getFurniture();
 
@@ -30,15 +31,25 @@ export const Shop = () => {
             <Navbar />
 
             <div className="container">
-                <Routes>
-                    <Route path="/" element={<ShopList furniture={furnitureList} />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/search" element={<ShopList furniture={furnitureListByName} />} />
-                    <Route path="/table" element={<ShopList furniture={getFurnitureByCategory('table')} />} />
-                    <Route path="/chair" element={<ShopList furniture={getFurnitureByCategory('chair')} />} />
-                    <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
-                    <Route path="/*" element={<Navigate to="/" />} />
-                </Routes>
+                {/* Poner appear en la transición hace que la animación se lleve a cabo aunque el 
+                componente ya haya sido creado anteriormente.*/}
+                <CSSTransition
+                    appear
+                    in
+                    key={location.key}
+                    classNames="card-transition"
+                    timeout={500}
+                >
+                    <Routes>
+                        <Route path="/" element={<ShopList furniture={furnitureList} />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/search" element={<ShopList furniture={furnitureListByName} />} />
+                        <Route path="/table" element={<ShopList furniture={getFurnitureByCategory('table')} />} />
+                        <Route path="/chair" element={<ShopList furniture={getFurnitureByCategory('chair')} />} />
+                        <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                        <Route path="/*" element={<Navigate to="/" />} />
+                    </Routes>
+                </CSSTransition>
             </div>
 
             <RepeatedItem />

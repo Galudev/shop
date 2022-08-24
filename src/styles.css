@@ -57,3 +57,12 @@ body {
     border: 1px solid #9c7e31;
     background-color: #f3ce72;
 }
+
+.card-transition-appear {
+    opacity: 0;
+}
+
+.card-transition-appear-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
