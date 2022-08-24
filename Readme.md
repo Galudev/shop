@@ -2,8 +2,10 @@
 
 ** Este documento contará con las funcionalidades que quedan pendientes de implementar, así como futuros cambios sobre las funcionalidades o el diseño ya creado.
 
+## Modificaciones
+* Mejorar Navbar para dispositivos de pantalla pequeña.
+
 ## Nuevas funcionalidades
-* Añadir página de detalles de un elemento.
 * Implementar una página de autenticación para los usuarios.
 * Implementar página de confirmación de compra.
 
