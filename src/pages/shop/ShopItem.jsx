@@ -1,18 +1,26 @@
-import { IconButton } from "@mui/material"
+import { IconButton } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useShoppingBasketStore } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const ShopItem = ({ furniture }) => {
 
+    const navigate = useNavigate();
+
     const { startAddingItem } = useShoppingBasketStore();
+
     const onClickAdd = (event) => {
         event.preventDefault();
         startAddingItem(furniture.id);
     }
 
+    const getDetails = () => {
+        navigate(`/furniture?id=${furniture.id}`);
+    }
+
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-0">
-            <div className="card m-2">
+            <div className="card m-2" onClick={getDetails}>
                 <img
                     src={furniture.img}
                     alt={furniture.name}
