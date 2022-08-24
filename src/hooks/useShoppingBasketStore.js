@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoadList, onSaveList } from "../store";
+import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoadList } from "../store";
 import { useDialogStore } from "./useDialogStore";
 
 
@@ -8,39 +9,43 @@ export const useShoppingBasketStore = () => {
     const { shoppingBasketList, count } = useSelector(state => state.shoppingBasket);
     const { openDialog } = useDialogStore();
 
+    useEffect(() => {
+        localStorage.setItem('shoppingBasketCount', JSON.stringify(count));
+        localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasketList));
+    }, [shoppingBasketList, count])
+
+
     const startLoadingList = () => {
-        dispatch(onLoadList());
+        const count = JSON.parse(localStorage.getItem('shoppingBasketCount')) ?? 0
+        const list = JSON.parse(localStorage.getItem('shoppingBasket')) ?? []
+        dispatch(onLoadList({ count, list }));
     };
 
-    const startAddingItem = (id) => {
+    const startAddingItem = async (id) => {
         const exist = shoppingBasketList.some(item => item.id === id);
         if (exist) {
             dispatch(onActive(id));
             openDialog();
         } else {
             dispatch(onAddItem(id));
-            dispatch(onSaveList());
         }
     };
 
-    const incrementItem = (id) => {
+    const startIncrementingItem = (id) => {
         dispatch(onIncrementItem(id));
-        dispatch(onSaveList());
     }
 
-    const startDeletingItem = (id) => {
+    const startDecrementingItem = (id) => {
         const count = shoppingBasketList.filter(item => item.id === id)[0].count;
         if (count > 1) {
             dispatch(onDecrementItem(id));
-            dispatch(onSaveList());
         } else {
-            deletingItem(id);
+            startDeletingItem(id);
         }
     };
 
-    const deletingItem = (id) => {
+    const startDeletingItem = (id) => {
         dispatch(onDeleteItem(id));
-        dispatch(onSaveList());
     }
 
     return {
@@ -49,8 +54,8 @@ export const useShoppingBasketStore = () => {
 
         startLoadingList,
         startAddingItem,
-        incrementItem,
+        startIncrementingItem,
         startDeletingItem,
-        deletingItem
+        startDecrementingItem
     }
 }

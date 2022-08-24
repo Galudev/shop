@@ -43,15 +43,11 @@ export const shoppingBasketSlice = createSlice({
         onActive: (state, { payload }) => {
             state.active = payload;
         },
-        onLoadList: (state) => {
-            state.count = JSON.parse(localStorage.getItem('shoppingBasketCount')) ?? 0;
-            state.shoppingBasketList = JSON.parse(localStorage.getItem('shoppingBasket')) ?? [];
-        },
-        onSaveList: (state) => {
-            localStorage.setItem('shoppingBasketCount', JSON.stringify(state.count));
-            localStorage.setItem('shoppingBasket', JSON.stringify(state.shoppingBasketList));
+        onLoadList: (state, { payload }) => {
+            state.count = payload.count;
+            state.shoppingBasketList = payload.list;
         }
     }
 });
 // Action creators are generated for each case reducer function
-export const { onAddItem, onIncrementItem, onDeleteItem, onDecrementItem, onActive, onLoadList, onSaveList } = shoppingBasketSlice.actions;
+export const { onAddItem, onIncrementItem, onDeleteItem, onDecrementItem, onActive, onLoadList } = shoppingBasketSlice.actions;

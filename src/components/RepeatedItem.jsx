@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,10 +9,10 @@ import { useDialogStore, useShoppingBasketStore } from '../hooks';
 
 export const RepeatedItem = () => {
     const { isDialogOpen, closeDialog } = useDialogStore();
-    const { incrementItem, } = useShoppingBasketStore();
+    const { startIncrementingItem, } = useShoppingBasketStore();
 
     const handleClose = (event, isCorrect) => {
-        if (isCorrect) incrementItem();
+        if (isCorrect) startIncrementingItem();
         closeDialog();
     };
 

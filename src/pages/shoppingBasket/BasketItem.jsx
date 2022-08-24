@@ -4,21 +4,21 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
-// TODO: Hacer el diseño
+
 export const BasketItem = ({ furniture }) => {
 
-    const { startDeletingItem, incrementItem, deletingItem } = useShoppingBasketStore();
+    const { startDecrementingItem, startIncrementingItem, startDeletingItem } = useShoppingBasketStore();
 
-    const onClickDel = () => {
+    const onClickDecrement = () => {
+        startDecrementingItem(furniture.id);
+    }
+
+    const onClickDelete = () => {
         startDeletingItem(furniture.id);
     }
 
-    const onDelete = () => {
-        deletingItem(furniture.id);
-    }
-
-    const onClickAdd = () => {
-        incrementItem(furniture.id);
+    const onClickIncrement = () => {
+        startIncrementingItem(furniture.id);
     }
 
     return (
@@ -35,12 +35,12 @@ export const BasketItem = ({ furniture }) => {
                         </div>
                         <div className="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 d-flex flex-column justify-content-between">
                             <div className="d-flex justify-content-center">
-                                <IconButton className="card-text btn p-0" onClick={onDelete}><DeleteIcon /></IconButton>
+                                <IconButton className="card-text btn p-0" onClick={onClickDelete}><DeleteIcon /></IconButton>
                             </div>
                             <div className="d-flex justify-content-center align-content-center">
-                                <IconButton className="card-text btn" onClick={onClickDel}><RemoveIcon /></IconButton>
+                                <IconButton className="card-text btn" onClick={onClickDecrement}><RemoveIcon /></IconButton>
                                 <div className="card-text d-inline m-1">{furniture.count}</div>
-                                <IconButton className="card-text btn mt-auto p-2 bd-highlight" onClick={onClickAdd}><AddIcon /></IconButton>
+                                <IconButton className="card-text btn mt-auto p-2 bd-highlight" onClick={onClickIncrement}><AddIcon /></IconButton>
                             </div>
                         </div>
                     </div>
