@@ -15,7 +15,8 @@ export const Navbar = () => {
     const onSearch = (event) => {
         event.preventDefault();
         onResetForm();
-        navigate(`search?q=${name}`);
+        if (name.length > 0)
+            navigate(`search?q=${name}`);
     }
 
     const { count } = useShoppingBasketStore();
