@@ -2,10 +2,9 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurniture, getFurnitureByCategory, getFurnitureByName } from "./helpers";
-import { Contact, ShopList } from "./pages";
+import { Contact, ShopList, BasketList } from "./pages";
 import { useShoppingBasketStore } from "./hooks";
 import { useEffect, useState } from "react";
-import { BasketList } from "./pages/shoppingBasket/BasketList";
 import { CSSTransition } from "react-transition-group";
 
 const furnitureList = getFurniture();

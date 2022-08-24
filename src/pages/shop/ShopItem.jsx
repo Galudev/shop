@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useShoppingBasketStore } from "../hooks";
+import { useShoppingBasketStore } from "../../hooks";
 
 export const ShopItem = ({ furniture }) => {
 

@@ -9,7 +9,6 @@ export const getFurniture = () => {
 }
 
 export const getFurnitureByName = (name) => {
-    //const name = localStorage.getItem('nameFurniture').toLocaleLowerCase();
     return furniture.filter(item => item.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
 }
 

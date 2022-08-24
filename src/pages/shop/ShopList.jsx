@@ -1,4 +1,4 @@
-import { EmptyList } from "../components";
+import { EmptyList } from "../../components";
 import { ShopItem } from "./ShopItem"
 
 export const ShopList = ({ furniture }) => {

@@ -1,3 +1,3 @@
-export * from './ShopItem';
-export * from './ShopList';
-export * from './Contact';
+export * from './shop/ShopList';
+export * from './shoppingBasket/BasketList'
+export * from './contact/Contact';
