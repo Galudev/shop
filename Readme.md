@@ -5,7 +5,7 @@
 ## Nuevas funcionalidades
 * Añadir página de detalles de un elemento.
 * Implementar una página de autenticación para los usuarios.
-* Implementar formalización de la compra.
+* Implementar página de confirmación de compra.
 
 ## Modificaciones/Implementaciones con impacto por estudiar
 * Modificar las opciones de filtro por categoría para automatizarlo.

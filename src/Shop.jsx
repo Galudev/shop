@@ -47,6 +47,7 @@ export const Shop = () => {
                         <Route path="/table" element={<ShopList furniture={getFurnitureByCategory('table')} />} />
                         <Route path="/chair" element={<ShopList furniture={getFurnitureByCategory('chair')} />} />
                         <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                        {/* <Route path="/buy" element={<buyPage />} /> */}
                         <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
                 </CSSTransition>
