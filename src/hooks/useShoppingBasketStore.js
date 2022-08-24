@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoad, onSave } from "../store";
+import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoad } from "../store";
 import { useDialogStore } from "./useDialogStore";
 
 
@@ -7,6 +7,11 @@ export const useShoppingBasketStore = () => {
     const dispatch = useDispatch();
     const { shoppingBasketList, count } = useSelector(state => state.shoppingBasket);
     const { openDialog } = useDialogStore();
+
+    const startSavingList = () => {
+        localStorage.setItem('shoppingBasketCount', JSON.stringify(count));
+        localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasketList));
+    };
 
     const startLoadingList = () => {
         const count = JSON.parse(localStorage.getItem('shoppingBasketCount')) ?? 0
@@ -21,20 +26,17 @@ export const useShoppingBasketStore = () => {
             openDialog();
         } else {
             dispatch(onAddItem(id));
-            dispatch(onSave());
         }
     };
 
     const startIncrementingItem = (id) => {
         dispatch(onIncrementItem(id));
-        dispatch(onSave());
     }
 
     const startDecrementingItem = (id) => {
         const count = shoppingBasketList.filter(item => item.id === id)[0].count;
         if (count > 1) {
             dispatch(onDecrementItem(id));
-            dispatch(onSave());
         } else {
             startDeletingItem(id);
         }
@@ -42,7 +44,6 @@ export const useShoppingBasketStore = () => {
 
     const startDeletingItem = (id) => {
         dispatch(onDeleteItem(id));
-        dispatch(onSave());
     }
 
     return {
@@ -53,6 +54,7 @@ export const useShoppingBasketStore = () => {
         startAddingItem,
         startIncrementingItem,
         startDeletingItem,
-        startDecrementingItem
+        startDecrementingItem,
+        startSavingList
     }
 }

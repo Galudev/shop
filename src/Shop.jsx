@@ -15,12 +15,16 @@ export const Shop = () => {
     const location = useLocation();
     const { q = '' } = queryString.parse(location.search);
 
-    const { startLoadingList, shoppingBasketList } = useShoppingBasketStore();
+    const { startLoadingList, startSavingList, shoppingBasketList, count } = useShoppingBasketStore();
     const [furnitureListByName, setFurnitureListByName] = useState([]);
 
     useEffect(() => {
         startLoadingList();
     }, []);
+
+    useEffect(() => {
+        startSavingList();
+    }, [count]);
 
     useEffect(() => {
         setFurnitureListByName(getFurnitureByName(q));
