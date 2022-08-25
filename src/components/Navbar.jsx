@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { useShoppingBasketStore } from "../hooks";
 import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 // NavLink o Link de react router dom para que no se recargue toda la página
 
 
@@ -29,21 +30,28 @@ export const Navbar = () => {
     return (
         <nav className="navbar navbar-expand p-2 navbar-shop navbar-dark">
             <Link className="navbar-brand" to="/">Shop</Link>
-
             <div className="navbar-collapse">
-                <div className={`navbar-nav ${forSearch ? 'd-none' : ''} d-sm-flex`}>
-                    <div className='nav-item btn-group'>
-                        <Link className="nav-link dropdown-toggle active" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtro
-                        </Link>
-                        <div className="dropdown-menu dropdown-menu-start">
-                            <NavLink className="dropdown-item nav-category-list" to='/filter/table' >Mesas</NavLink>
-                            <hr className="dropdown-divider" />
-                            <NavLink className="dropdown-item nav-category-list" to='/filter/chair' >Sillas</NavLink>
+                <CSSTransition
+                    appear
+                    in
+                    key={forSearch}
+                    classNames="transition"
+                    timeout={500}
+                >
+                    <div className={`navbar-nav ${forSearch ? 'd-none' : ''} d-sm-flex`}>
+                        <div className='nav-item btn-group'>
+                            <Link className="nav-link dropdown-toggle active" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filtro
+                            </Link>
+                            <div className="dropdown-menu dropdown-menu-start">
+                                <NavLink className="dropdown-item nav-category-list" to='/filter/table' >Mesas</NavLink>
+                                <hr className="dropdown-divider" />
+                                <NavLink className="dropdown-item nav-category-list" to='/filter/chair' >Sillas</NavLink>
+                            </div>
                         </div>
+                        <NavLink className="nav-item nav-link active" to="/contact">Contacto</NavLink>
                     </div>
-                    <NavLink className="nav-item nav-link active" to="/contact">Contacto</NavLink>
-                </div>
+                </CSSTransition>
 
                 <div className="navbar-collapse d-flex justify-content-end">
                     <form
@@ -51,14 +59,23 @@ export const Navbar = () => {
                         role="search"
                         onSubmit={onSearch}
                     >
-                        <input
-                            className={`form-control field-search ${forSearch ? '' : 'd-none'} d-sm-flex`}
-                            type="search"
-                            placeholder=""
-                            name='name'
-                            value={name}
-                            onChange={onInputChange}
-                        />
+
+                        <CSSTransition
+                            appear
+                            in
+                            key={forSearch}
+                            classNames="transition"
+                            timeout={500}
+                        >
+                            <input
+                                className={`form-control field-search ${forSearch ? '' : 'd-none'} d-sm-flex`}
+                                type="search"
+                                placeholder=""
+                                name='name'
+                                value={name}
+                                onChange={onInputChange}
+                            />
+                        </CSSTransition>
                         <IconButton className="btn" type="submit" style={{ color: "#ffffff" }}><SearchIcon /></IconButton>
                     </form>
 

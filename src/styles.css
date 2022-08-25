@@ -48,11 +48,11 @@ body {
     background-color: #f3ce72;
 }
 
-.card-transition-appear {
+.transition-appear {
     opacity: 0;
 }
 
-.card-transition-appear-active {
+.transition-appear-active {
     opacity: 1;
     transition: opacity 500ms;
 }

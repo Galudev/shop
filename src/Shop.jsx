@@ -40,7 +40,7 @@ export const Shop = () => {
                     appear
                     in
                     key={location.key}
-                    classNames="card-transition"
+                    classNames="transition"
                     timeout={500}
                 >
                     <Routes>
