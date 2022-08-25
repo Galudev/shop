@@ -2,7 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurniture, getFurnitureByName } from "./helpers";
-import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage } from "./pages";
+import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage, BuyPage } from "./pages";
 import { useAuthStore, useShoppingBasketStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
@@ -53,8 +53,8 @@ export const Shop = () => {
 
                         {(isLogged === 'authenticated') ? (
                             <>
-                                < Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
-                                {/* <Route path="/buy" element={<buyPage />} /> */}
+                                <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                                <Route path="/buy" element={<BuyPage />} />
                             </>
                         ) : (
                             <>

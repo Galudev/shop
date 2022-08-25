@@ -19,7 +19,7 @@ export const useShoppingBasketStore = () => {
         dispatch(onLoad({ count, list }));
     };
 
-    const startAddingItem = async (id) => {
+    const startAddingItem = (id) => {
         const exist = shoppingBasketList.some(item => item.id === id);
         if (exist) {
             dispatch(onActive(id));

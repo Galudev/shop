@@ -26,7 +26,7 @@ export const ItemDetails = () => {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-8 card-body p-4 m-0 d-flex justify-content-between flex-column">
                         <div className="row">
                             <h5 className="card-title text-truncate fs-2">{furniture.name}</h5>
-                            <p className="card-text fs-5 mb-2">{furniture.price}</p>
+                            <p className="card-text fs-5 mb-2">{`${furniture.price}€`}</p>
                             <p className="card-text mb-2">{furniture.description}</p>
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
