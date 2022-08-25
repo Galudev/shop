@@ -2,7 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurniture, getFurnitureByName } from "./helpers";
-import { Contact, ShopList, BasketList, ItemDetails, ShopFilter } from "./pages";
+import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage } from "./pages";
 import { useShoppingBasketStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
@@ -50,6 +50,8 @@ export const Shop = () => {
                         <Route path="/filter/:category" element={<ShopFilter />} />
                         <Route path="/furniture/:id" element={<ItemDetails />} />
                         <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
                         {/* <Route path="/buy" element={<buyPage />} /> */}
                         <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
