@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { getPrice } from '../../helpers';
 import { useForm, useShoppingBasketStore } from '../../hooks'
 
-const regexCard = /^(?:(\d{4}\s?){4}|(\d{4,6}\s?){3})$/;
+const regexCard = /^([0-9]{16})$|(([0-9]{4}\s){3}[0-9]{4})$/;
 
 export const BuyPage = () => {
 
