@@ -37,9 +37,9 @@ export const Navbar = () => {
                             Filtro
                         </Link>
                         <div className="dropdown-menu dropdown-menu-start">
-                            <NavLink className="dropdown-item nav-category-list" to='/table' >Mesas</NavLink>
+                            <NavLink className="dropdown-item nav-category-list" to='/filter/table' >Mesas</NavLink>
                             <hr className="dropdown-divider" />
-                            <NavLink className="dropdown-item nav-category-list" to='/chair' >Sillas</NavLink>
+                            <NavLink className="dropdown-item nav-category-list" to='/filter/chair' >Sillas</NavLink>
                         </div>
                     </div>
                     <NavLink className="nav-item nav-link active" to="/contact">Contacto</NavLink>

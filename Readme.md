@@ -7,7 +7,7 @@
 * Implementar página de confirmación de compra.
 
 ## Modificaciones/Implementaciones con impacto por estudiar
-* Modificar las opciones de filtro por categoría para automatizarlo.
+* Modificar las opciones de filtro por categoría para automatizarlo en el Navbar.
 
 ## Nuevos proyectos
 * Realizar API para base de datos de los productos, usuarios y carrito, y que envíe los mensajes de contacto al administrador.
