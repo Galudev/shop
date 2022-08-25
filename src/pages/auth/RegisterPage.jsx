@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useForm } from '../../hooks'
+import { useAuthStore, useForm } from '../../hooks'
 
 const contactFormFields = {
     name: '',
@@ -21,12 +21,13 @@ export const RegisterPage = () => {
 
     const { name, email, password, onInputChange, nameValid, emailValid, passwordValid, isFormValid } = useForm(contactFormFields, formValidations);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const { startRegister } = useAuthStore();
 
     const onSend = (event) => {
         event.preventDefault();
         setFormSubmitted(true);
         if (!isFormValid) return;
-        console.log(name, email, password);
+        startRegister({ name, email, password });
     }
 
     return (

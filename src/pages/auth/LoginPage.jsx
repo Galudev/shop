@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from '../../hooks'
+import { useAuthStore, useForm } from '../../hooks';
+import Swal from 'sweetalert2';
 
 const contactFormFields = {
     email: '',
@@ -9,11 +11,18 @@ const contactFormFields = {
 export const LoginPage = () => {
 
     const { email, password, onInputChange } = useForm(contactFormFields);
+    const { startLogin, errorMessage } = useAuthStore();
 
     const onSend = (event) => {
         event.preventDefault();
-        console.log(email, password);
+        startLogin({ email, password });
     }
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+            Swal.fire('Error en la autenticación', errorMessage, 'error');
+        }
+    }, [errorMessage])
 
     return (
         <div className='container contact'>

@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useShoppingBasketStore } from "../hooks";
+import { useAuthStore, useShoppingBasketStore } from "../hooks";
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 // NavLink o Link de react router dom para que no se recargue toda la página
@@ -17,7 +17,7 @@ export const Navbar = () => {
 
     const [forSearch, setForSearch] = useState(false);
 
-    const [isLogged, setIsLogged] = useState(false); // ! Temporal mientras se implementa en el store
+    const { isLogged, startLogout } = useAuthStore();
 
     const { name, onInputChange, onResetForm } = useForm({ name: '' });
     const onSearch = (event) => {
@@ -32,12 +32,11 @@ export const Navbar = () => {
     const { count } = useShoppingBasketStore();
 
     const onLogout = () => {
-        setIsLogged(false);
+        startLogout();
         navigate('/login')
     }
 
     const onLogin = () => {
-        setIsLogged(true);
         navigate('/login')
     }
 
@@ -93,14 +92,14 @@ export const Navbar = () => {
                         <IconButton className="btn" type="submit" style={{ color: "#ffffff" }}><SearchIcon /></IconButton>
                     </form>
 
-                    <NavLink className={`nav-item nav-link me-2 ms-2 me-md-3 ms-md-3 ${isLogged ? '' : 'd-none'}`} to="/shoppingBasket">
+                    <NavLink className={`nav-item nav-link me-2 ms-2 me-md-3 ms-md-3 ${isLogged === 'authenticated' ? '' : 'd-none'}`} to="/shoppingBasket">
                         <Badge color="warning" badgeContent={count}>
                             <ShoppingCartIcon />
                         </Badge>
                     </NavLink>
 
                     <IconButton
-                        className={`nav-item nav-link me-0 ms-2 me-md-2 ${isLogged ? '' : 'd-none'}`}
+                        className={`nav-item nav-link me-0 ms-2 me-md-2 ${isLogged === 'authenticated' ? '' : 'd-none'}`}
                         style={{ color: "#ffffff" }}
                         onClick={onLogout}
                     >
@@ -108,7 +107,7 @@ export const Navbar = () => {
                     </IconButton>
 
                     <IconButton
-                        className={`nav-item nav-link me-0 ms-2 me-md-2 ${isLogged ? 'd-none' : ''}`}
+                        className={`nav-item nav-link me-0 ms-2 me-md-2 ${isLogged === 'authenticated' ? 'd-none' : ''}`}
                         style={{ color: "#ffffff" }}
                         onClick={onLogin}
                     >

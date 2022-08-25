@@ -3,7 +3,7 @@ import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurniture, getFurnitureByName } from "./helpers";
 import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage } from "./pages";
-import { useShoppingBasketStore } from "./hooks";
+import { useAuthStore, useShoppingBasketStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
@@ -15,6 +15,7 @@ export const Shop = () => {
     const { q = '' } = queryString.parse(location.search);
 
     const { startLoadingList, startSavingList, shoppingBasketList, count } = useShoppingBasketStore();
+    const { isLogged } = useAuthStore();
     const [furnitureListByName, setFurnitureListByName] = useState([]);
 
     useEffect(() => {
@@ -49,10 +50,18 @@ export const Shop = () => {
                         <Route path="/search" element={<ShopList furniture={furnitureListByName} />} />
                         <Route path="/filter/:category" element={<ShopFilter />} />
                         <Route path="/furniture/:id" element={<ItemDetails />} />
-                        <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/register" element={<RegisterPage />} />
-                        {/* <Route path="/buy" element={<buyPage />} /> */}
+
+                        {(isLogged === 'authenticated') ? (
+                            <>
+                                < Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                                {/* <Route path="/buy" element={<buyPage />} /> */}
+                            </>
+                        ) : (
+                            <>
+                                <Route path="/login" element={<LoginPage />} />
+                                <Route path="/register" element={<RegisterPage />} />
+                            </>
+                        )}
                         <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
                 </CSSTransition>
