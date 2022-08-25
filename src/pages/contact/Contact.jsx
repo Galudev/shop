@@ -7,7 +7,7 @@ const contactFormFields = {
     message: ''
 };
 
-const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
 const formValidations = {
     name: [(value) => value.length > 0, 'El nombre es obligatorio'],
