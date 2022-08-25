@@ -16,7 +16,6 @@ export const Shop = () => {
 
     const { startLoadingList, startSavingList, shoppingBasketList, count } = useShoppingBasketStore();
     const [furnitureListByName, setFurnitureListByName] = useState([]);
-    const [furnitureById, setFurnitureById] = useState({});
 
     useEffect(() => {
         startLoadingList();
@@ -29,10 +28,6 @@ export const Shop = () => {
     useEffect(() => {
         setFurnitureListByName(getFurnitureByName(q));
     }, [q]);
-
-    useEffect(() => {
-        setFurnitureById(getFurnitureById(id));
-    }, [id]);
 
     return (
         <>
@@ -54,7 +49,7 @@ export const Shop = () => {
                         <Route path="/search" element={<ShopList furniture={furnitureListByName} />} />
                         <Route path="/table" element={<ShopList furniture={getFurnitureByCategory('table')} />} />
                         <Route path="/chair" element={<ShopList furniture={getFurnitureByCategory('chair')} />} />
-                        <Route path="/furniture" element={<ItemDetails furniture={furnitureById} />} />
+                        <Route path="/furniture/:id" element={<ItemDetails />} />
                         <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
                         {/* <Route path="/buy" element={<buyPage />} /> */}
                         <Route path="/*" element={<Navigate to="/" />} />

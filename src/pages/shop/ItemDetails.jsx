@@ -1,7 +1,14 @@
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { getFurnitureById } from "../../helpers";
 import { useShoppingBasketStore } from "../../hooks";
 
 
-export const ItemDetails = ({ furniture }) => {
+export const ItemDetails = () => {
+
+    const { id } = useParams();
+
+    const furniture = useMemo(() => getFurnitureById(id), [id]);
 
     const { startAddingItem } = useShoppingBasketStore()
 

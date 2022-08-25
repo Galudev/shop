@@ -15,7 +15,7 @@ export const ShopItem = ({ furniture }) => {
     }
 
     const getDetails = () => {
-        navigate(`/furniture?id=${furniture.id}`);
+        navigate(`/furniture/${furniture.id}`);
     }
 
     return (
