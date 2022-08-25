@@ -1,24 +1,37 @@
 import React, { useState } from 'react'
-import { useForm } from '../../hooks'
-
-const contactFormFields = {
-    name: '',
-    email: '',
-    message: ''
-};
+import { useAuthStore, useForm } from '../../hooks'
 
 const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-const formValidations = {
-    name: [(value) => value.length > 0, 'El nombre es obligatorio'],
-    email: [(value) => regexEmail.test(value), 'Introduzca un correo electrónico válido'],
-    message: [(value) => value.length > 0, 'Introduzca un mensaje']
-}
-
 export const Contact = () => {
 
-    const { name, email, message, onInputChange, nameValid, emailValid, messageValid, isFormValid } = useForm(contactFormFields, formValidations);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const { user } = useAuthStore();
+
+
+    const contactFormFields = () => {
+        if (user.name) {
+            return {
+                name: user.name,
+                email: user.email,
+                message: ''
+            };
+        } else {
+            return {
+                name: '',
+                email: '',
+                message: ''
+            };
+        }
+    }
+
+    const formValidations = {
+        name: [(value) => value.length > 0, 'El nombre es obligatorio'],
+        email: [(value) => regexEmail.test(value), 'Introduzca un correo electrónico válido'],
+        message: [(value) => value.length > 0, 'Introduzca un mensaje']
+    }
+
+    const { name, email, message, onInputChange, nameValid, emailValid, messageValid, isFormValid } = useForm(contactFormFields, formValidations);
 
     const onSend = (event) => {
         event.preventDefault();
