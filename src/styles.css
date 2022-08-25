@@ -18,17 +18,7 @@ body {
 }
 
 .field-search {
-    border-radius: 4px 0px 0px 4px;
-}
-
-.btn-search-shop {
-    border-radius: 0px 4px 4px 0px;
-    background-color: #febd69;
-    pointer-events: visibleFill;
-}
-
-.btn-search-shop:hover {
-    background-color: #eea74a;
+    border-radius: 4px 4px 4px 4px;
 }
 
 .btn-shop {

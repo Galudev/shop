@@ -4,6 +4,7 @@ import { Badge, IconButton } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { useShoppingBasketStore } from "../hooks";
+import { useState } from "react";
 // NavLink o Link de react router dom para que no se recargue toda la página
 
 
@@ -11,12 +12,16 @@ export const Navbar = () => {
 
     const navigate = useNavigate();
 
+    const [forSearch, setForSearch] = useState(false);
+
     const { name, onInputChange, onResetForm } = useForm({ name: '' });
     const onSearch = (event) => {
         event.preventDefault();
-        onResetForm();
-        if (name.length > 0)
+        setForSearch(!forSearch);
+        if (name.length > 0) {
             navigate(`search?q=${name}`);
+            onResetForm();
+        }
     }
 
     const { count } = useShoppingBasketStore();
@@ -26,7 +31,7 @@ export const Navbar = () => {
             <Link className="navbar-brand" to="/">Shop</Link>
 
             <div className="navbar-collapse">
-                <div className="navbar-nav">
+                <div className={`navbar-nav ${forSearch ? 'd-none' : ''} d-sm-flex`}>
                     <div className='nav-item btn-group'>
                         <Link className="nav-link dropdown-toggle active" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Filtro
@@ -47,19 +52,17 @@ export const Navbar = () => {
                         onSubmit={onSearch}
                     >
                         <input
-                            className="form-control field-search"
+                            className={`form-control field-search ${forSearch ? '' : 'd-none'} d-sm-flex`}
                             type="search"
                             placeholder=""
                             name='name'
                             value={name}
                             onChange={onInputChange}
                         />
-                        <div className="btn-search-shop">
-                            <IconButton className="btn" type="submit" style={{ color: "#333333" }}><SearchIcon /></IconButton>
-                        </div>
+                        <IconButton className="btn" type="submit" style={{ color: "#ffffff" }}><SearchIcon /></IconButton>
                     </form>
 
-                    <NavLink className="nav-item nav-link me-3 ms-3 btn-basket" to="/shoppingBasket">
+                    <NavLink className="nav-item nav-link me-3 ms-3" to="/shoppingBasket">
                         <Badge color="warning" badgeContent={count}>
                             <ShoppingCartIcon />
                         </Badge>
