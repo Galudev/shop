@@ -11,11 +11,11 @@ export const ShopItem = ({ furniture }) => {
 
     const onClickAdd = (event) => {
         event.preventDefault();
-        startAddingItem(furniture.id);
+        startAddingItem(furniture._id);
     }
 
     const getDetails = () => {
-        navigate(`/furniture/${furniture.id}`);
+        navigate(`/furniture/${furniture._id}`);
     }
 
     return (

@@ -1,7 +1,6 @@
-import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { EmptyList } from "../../components";
-import { getFurnitureById } from "../../helpers"
+import { getFurnitureList } from "../../helpers"
 import { BasketItem } from "./BasketItem"
 
 
@@ -10,7 +9,7 @@ export const BasketList = ({ furniture }) => {
     const navigate = useNavigate();
 
     const furnitureForShopping = furniture.map(item => {
-        const furniture = getFurnitureById(item.id)
+        const furniture = getFurnitureList().getFurnitureById(item.id)
         return { ...furniture, count: item.count };
     });
 

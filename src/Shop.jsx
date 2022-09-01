@@ -1,13 +1,11 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
-import { getFurniture, getFurnitureByName } from "./helpers";
+import { getFurnitureList } from "./helpers";
 import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage, BuyPage } from "./pages";
-import { useAuthStore, useShoppingBasketStore } from "./hooks";
+import { useAuthStore, useShoppingBasketStore, useFurnitureStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-
-const furnitureList = getFurniture();
 
 export const Shop = () => {
 
@@ -15,10 +13,13 @@ export const Shop = () => {
     const { q = '' } = queryString.parse(location.search);
 
     const { startLoadingList, startSavingList, shoppingBasketList, count } = useShoppingBasketStore();
+    const { startLoadingFurniture, furnitureList } = useFurnitureStore();
     const { isLogged } = useAuthStore();
+    const { getFurnitureByName } = getFurnitureList(furnitureList);
     const [furnitureListByName, setFurnitureListByName] = useState([]);
 
     useEffect(() => {
+        startLoadingFurniture();
         startLoadingList();
     }, []);
 

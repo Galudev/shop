@@ -10,7 +10,7 @@ export const ShopList = ({ furniture }) => {
             <div className="row">
                 {
                     furniture.map((furniture) => (
-                        <ShopItem key={furniture.id} furniture={furniture} />
+                        <ShopItem key={furniture._id} furniture={furniture} />
                     ))
                 }
             </div>

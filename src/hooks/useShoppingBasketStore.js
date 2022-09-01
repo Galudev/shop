@@ -20,7 +20,7 @@ export const useShoppingBasketStore = () => {
     };
 
     const startAddingItem = (id) => {
-        const exist = shoppingBasketList.some(item => item.id === id);
+        const exist = shoppingBasketList.some(item => item._id === id);
         if (exist) {
             dispatch(onActive(id));
             openDialog();
@@ -34,7 +34,7 @@ export const useShoppingBasketStore = () => {
     }
 
     const startDecrementingItem = (id) => {
-        const count = shoppingBasketList.filter(item => item.id === id)[0].count;
+        const count = shoppingBasketList.filter(item => item._id === id)[0].count;
         if (count > 1) {
             dispatch(onDecrementItem(id));
         } else {

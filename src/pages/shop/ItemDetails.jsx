@@ -1,19 +1,20 @@
-import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { getFurnitureById } from "../../helpers";
-import { useShoppingBasketStore } from "../../hooks";
+import { getFurnitureList } from "../../helpers";
+import { useShoppingBasketStore, useFurnitureStore } from "../../hooks";
 
 
 export const ItemDetails = () => {
 
     const { id } = useParams();
+    const { furnitureList } = useFurnitureStore();
+    const { getFurnitureById } = getFurnitureList(furnitureList);
 
-    const furniture = useMemo(() => getFurnitureById(id), [id]);
+    const furniture = getFurnitureById(id);
 
     const { startAddingItem } = useShoppingBasketStore()
 
     const onClickAdd = () => {
-        startAddingItem(furniture.id);
+        startAddingItem(furniture._id);
     }
 
     return (
