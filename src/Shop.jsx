@@ -3,7 +3,7 @@ import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurnitureList } from "./helpers";
 import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage, BuyPage } from "./pages";
-import { useAuthStore, useShoppingBasketStore, useFurnitureStore } from "./hooks";
+import { useAuthStore, useFurnitureStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
@@ -12,7 +12,6 @@ export const Shop = () => {
     const location = useLocation();
     const { q = '' } = queryString.parse(location.search);
 
-    const { startLoadingList, shoppingBasketList } = useShoppingBasketStore();
     const { startLoadingFurniture, furnitureList } = useFurnitureStore();
     const { isLogged, checkAuthToken } = useAuthStore();
     const { getFurnitureByName } = getFurnitureList(furnitureList);
@@ -21,7 +20,6 @@ export const Shop = () => {
     useEffect(() => {
         startLoadingFurniture();
         checkAuthToken();
-        startLoadingList();
     }, []);
 
     useEffect(() => {
@@ -51,7 +49,7 @@ export const Shop = () => {
 
                         {(isLogged === 'authenticated') ? (
                             <>
-                                <Route path="/shoppingBasket" element={<BasketList furniture={shoppingBasketList} />} />
+                                <Route path="/shoppingBasket" element={<BasketList />} />
                                 <Route path="/buy" element={<BuyPage />} />
                             </>
                         ) : (

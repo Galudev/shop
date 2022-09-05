@@ -55,8 +55,10 @@ export const useAuthStore = () => {
 
         try {
             const { data } = await shopApi.get('auth/renew');
+            const { user } = data;
             localStorage.setItem('token', data.token);
-            dispatch(onLogin({ name: data.name, email: data.email }));
+            startLoadingList(user.basketList);
+            dispatch(onLogin({ name: user.name, email: user.email }));
         } catch (error) {
             console.log(error);
             localStorage.clear();

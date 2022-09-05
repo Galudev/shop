@@ -1,19 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { EmptyList } from "../../components";
 import { getFurnitureList } from "../../helpers"
+import { useFurnitureStore, useShoppingBasketStore } from "../../hooks";
 import { BasketItem } from "./BasketItem"
 
 
-export const BasketList = ({ furniture }) => {
+export const BasketList = () => {
 
     const navigate = useNavigate();
 
-    const furnitureForShopping = furniture.map(item => {
-        const furniture = getFurnitureList().getFurnitureById(item.id)
+    const { shoppingBasketList } = useShoppingBasketStore();
+    const { furnitureList } = useFurnitureStore();
+
+    const { getFurnitureById } = getFurnitureList(furnitureList);
+
+    const furnitureForShopping = shoppingBasketList.map(item => {
+        const furniture = getFurnitureById(item.id)
         return { ...furniture, count: item.count };
     });
 
-    const isEmpty = furniture.length === 0
+    const isEmpty = shoppingBasketList.length === 0
 
     const onClickBuy = () => {
         navigate('/buy');
@@ -24,7 +30,7 @@ export const BasketList = ({ furniture }) => {
             <div className="row">
                 {
                     furnitureForShopping.map((furniture) => (
-                        <BasketItem key={furniture.id} furniture={furniture} />
+                        <BasketItem key={furniture._id} furniture={furniture} />
                     ))
                 }
             </div>

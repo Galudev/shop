@@ -13,19 +13,19 @@ export const BasketItem = ({ furniture }) => {
     const navigate = useNavigate();
 
     const getDetails = () => {
-        navigate(`/furniture/${furniture.id}`);
+        navigate(`/furniture/${furniture._id}`);
     }
 
     const onClickDecrement = () => {
-        startDecrementingItem(furniture.id);
+        startDecrementingItem(furniture._id);
     }
 
     const onClickDelete = () => {
-        startDeletingItem(furniture.id);
+        startDeletingItem(furniture._id);
     }
 
     const onClickIncrement = () => {
-        startIncrementingItem(furniture.id);
+        startIncrementingItem(furniture._id);
     }
 
     return (

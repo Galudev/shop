@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { shopApi } from "../api";
 import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoad } from "../store";
 import { useDialogStore } from "./useDialogStore";
 
@@ -8,42 +9,60 @@ export const useShoppingBasketStore = () => {
     const { shoppingBasketList, count } = useSelector(state => state.shoppingBasket);
     const { openDialog } = useDialogStore();
 
-    const startSavingList = () => {
-        localStorage.setItem('shoppingBasketCount', JSON.stringify(count));
-        localStorage.setItem('shoppingBasket', JSON.stringify(shoppingBasketList));
-    };
-
-    const startLoadingList = () => {
-        const count = JSON.parse(localStorage.getItem('shoppingBasketCount')) ?? 0
-        const list = JSON.parse(localStorage.getItem('shoppingBasket')) ?? []
+    const startLoadingList = (list = []) => {
+        let count = 0;
+        list.map(item => {
+            count += item.count;
+        })
         dispatch(onLoad({ count, list }));
     };
 
-    const startAddingItem = (id) => {
-        const exist = shoppingBasketList.some(item => item._id === id);
+    const startAddingItem = async (id) => {
+        const exist = shoppingBasketList.some(item => item.id === id);
         if (exist) {
             dispatch(onActive(id));
             openDialog();
         } else {
-            dispatch(onAddItem(id));
+            try {
+                await shopApi.post(`/basket/${id}`);
+                dispatch(onAddItem(id));
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
 
-    const startIncrementingItem = (id) => {
-        dispatch(onIncrementItem(id));
+    const startIncrementingItem = async (id) => {
+        const count = shoppingBasketList.filter(item => item.id === id)[0].count;
+        try {
+            await shopApi.put('/basket', { id, count: count + 1 })
+            dispatch(onIncrementItem(id));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    const startDecrementingItem = (id) => {
-        const count = shoppingBasketList.filter(item => item._id === id)[0].count;
+    const startDecrementingItem = async (id) => {
+        const count = shoppingBasketList.filter(item => item.id === id)[0].count;
         if (count > 1) {
-            dispatch(onDecrementItem(id));
+            try {
+                await shopApi.put('/basket', { id, count: count - 1 })
+                dispatch(onDecrementItem(id));
+            } catch (error) {
+                console.log(error)
+            }
         } else {
             startDeletingItem(id);
         }
     };
 
-    const startDeletingItem = (id) => {
-        dispatch(onDeleteItem(id));
+    const startDeletingItem = async (id) => {
+        try {
+            await shopApi.delete(`/basket/${id}`);
+            dispatch(onDeleteItem(id));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return {
@@ -54,7 +73,6 @@ export const useShoppingBasketStore = () => {
         startAddingItem,
         startIncrementingItem,
         startDeletingItem,
-        startDecrementingItem,
-        startSavingList
+        startDecrementingItem
     }
 }
