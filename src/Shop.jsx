@@ -12,20 +12,17 @@ export const Shop = () => {
     const location = useLocation();
     const { q = '' } = queryString.parse(location.search);
 
-    const { startLoadingList, startSavingList, shoppingBasketList, count } = useShoppingBasketStore();
+    const { startLoadingList, shoppingBasketList } = useShoppingBasketStore();
     const { startLoadingFurniture, furnitureList } = useFurnitureStore();
-    const { isLogged } = useAuthStore();
+    const { isLogged, checkAuthToken } = useAuthStore();
     const { getFurnitureByName } = getFurnitureList(furnitureList);
     const [furnitureListByName, setFurnitureListByName] = useState([]);
 
     useEffect(() => {
         startLoadingFurniture();
+        checkAuthToken();
         startLoadingList();
     }, []);
-
-    useEffect(() => {
-        startSavingList();
-    }, [count]);
 
     useEffect(() => {
         setFurnitureListByName(getFurnitureByName(q));
