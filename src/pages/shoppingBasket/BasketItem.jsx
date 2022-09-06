@@ -33,7 +33,9 @@ export const BasketItem = ({ furniture }) => {
             <div className="card mb-2 mt-2">
                 <div className="row g-0">
                     <div className="col-5 col-sm-5 col-md-4 col-lg-3 col-xl-2 d-flex align-items-center justify-content-center">
-                        <img src={furniture.img} className="img-fluid rounded-start p-2" alt={furniture.name} onClick={getDetails} />
+                        <div className="ratio ratio-1x1">
+                            <img src={furniture.img} className="img-fluid rounded-start p-2" alt={furniture.name} onClick={getDetails} />
+                        </div>
                     </div>
                     <div className="col-7 col-sm-7 col-md-8 col-lg-9 col-xl-10 card-body pe-2 ps-2 p-4 m-0 d-flex flex-row">
                         <div className="col-6 col-sm-7 col-md-8 col-lg-9 col-xl-10 d-flex flex-column justify-content-between">

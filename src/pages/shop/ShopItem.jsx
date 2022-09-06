@@ -21,12 +21,14 @@ export const ShopItem = ({ furniture }) => {
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-0">
             <div className="card m-2">
-                <img
-                    src={furniture.img}
-                    alt={furniture.name}
-                    className="card-img-top"
-                    onClick={getDetails}
-                />
+                <div className="ratio ratio-1x1">
+                    <img
+                        src={furniture.img}
+                        alt={furniture.name}
+                        className="card-img-top"
+                        onClick={getDetails}
+                    />
+                </div>
                 <div className="card-body row">
                     <div className="col-9">
                         <h3 className="card-title text-truncate">{furniture.name}</h3>
