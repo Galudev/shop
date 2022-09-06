@@ -9,10 +9,10 @@ import { useDialogStore, useShoppingBasketStore } from '../hooks';
 
 export const RepeatedItem = () => {
     const { isDialogOpen, closeDialog } = useDialogStore();
-    const { startIncrementingItem, } = useShoppingBasketStore();
+    const { startIncrementingItem, active } = useShoppingBasketStore();
 
     const handleClose = (event, isCorrect) => {
-        if (isCorrect) startIncrementingItem();
+        if (isCorrect) startIncrementingItem(active);
         closeDialog();
     };
 

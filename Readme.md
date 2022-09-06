@@ -4,7 +4,6 @@
 
 ## Nuevas funcionalidades
 * Implementar el envío de mensajes (contacto y formalizar compra).
-* Solucionar error no se añade item al darle a añadir en el aviso de artículo presente en la lista
 
 ## Modificaciones/Implementaciones con impacto por estudiar
 * Modificar las opciones de filtro por categoría para automatizarlo en el Navbar.

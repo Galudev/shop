@@ -6,7 +6,7 @@ import { useDialogStore } from "./useDialogStore";
 
 export const useShoppingBasketStore = () => {
     const dispatch = useDispatch();
-    const { shoppingBasketList, count, isLoadingShoppingBasket } = useSelector(state => state.shoppingBasket);
+    const { shoppingBasketList, count, isLoadingShoppingBasket, active } = useSelector(state => state.shoppingBasket);
     const { openDialog } = useDialogStore();
 
     const startLoadingList = (list = []) => {
@@ -69,6 +69,7 @@ export const useShoppingBasketStore = () => {
         shoppingBasketList,
         count,
         isLoadingShoppingBasket,
+        active,
 
         startLoadingList,
         startAddingItem,
