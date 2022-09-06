@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { sendEmail } from '../../helpers';
 import { useAuthStore, useForm } from '../../hooks'
+import { LoadingPage } from '..';
 
 const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
 export const Contact = () => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isSending, setIsSending] = useState(false);
     const { user } = useAuthStore();
 
 
@@ -31,18 +34,28 @@ export const Contact = () => {
         message: [(value) => value.length > 0, 'Introduzca un mensaje']
     }
 
-    const { name, email, message, onInputChange, nameValid, emailValid, messageValid, isFormValid } = useForm(contactFormFields, formValidations);
+    const { name, email, message, onInputChange, onResetForm, nameValid, emailValid, messageValid, isFormValid } = useForm(contactFormFields, formValidations);
 
-    const onSend = (event) => {
+    const onSend = async (event) => {
         event.preventDefault();
         setFormSubmitted(true);
         if (!isFormValid) return;
-        localStorage.setItem("contact", JSON.stringify({ name, email, message }));
+        const messageEmail = `nombre: ${name}\nemail: ${email}\nmensaje: ${message}`;
+        setIsSending(true);
+        const isSend = await sendEmail('Solicitud de contacto', messageEmail);
+        setIsSending(false);
+        if (isSend) {
+            setFormSubmitted(false);
+            onResetForm();
+        }
     }
 
     return (
-        <div className='container contact'>
+        <div className='container contact position-relative'>
             <form onSubmit={onSend} >
+                {
+                    isSending ? <LoadingPage /> : <></>
+                }
                 <div className='row d-flex justify-content-center align-content-center'>
                     <div className='col-8 form-contact'>
                         <div className="mb-3">
