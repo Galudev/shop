@@ -40,7 +40,7 @@ export const BasketItem = ({ furniture }) => {
                     <div className="col-7 col-sm-7 col-md-8 col-lg-9 col-xl-10 card-body pe-2 ps-2 p-4 m-0 d-flex flex-row">
                         <div className="col-6 col-sm-7 col-md-8 col-lg-9 col-xl-10 d-flex flex-column justify-content-between">
                             <h5 className="card-title text-truncate fs-2">{furniture.name}</h5>
-                            <p className="card-text fs-5 mb-2">{`${furniture.price}€`}</p>
+                            <p className="card-text fs-5 mb-2">{`${furniture.price.toFixed(2)}€`}</p>
                         </div>
                         <div className="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 d-flex flex-column justify-content-between">
                             <div className="d-flex justify-content-center">

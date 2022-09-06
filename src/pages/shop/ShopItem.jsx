@@ -42,7 +42,7 @@ export const ShopItem = ({ furniture }) => {
                         </IconButton>
                     </div>
                     <div className="col">
-                        <h5 className="card-text">{`${furniture.price}€`}</h5>
+                        <h5 className="card-text">{`${furniture.price.toFixed(2)}€`}</h5>
                     </div>
                 </div>
             </div>
