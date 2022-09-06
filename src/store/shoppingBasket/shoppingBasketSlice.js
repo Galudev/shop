@@ -44,8 +44,10 @@ export const shoppingBasketSlice = createSlice({
             state.active = payload;
         },
         onLoad: (state, { payload }) => {
+            state.isLoadingShoppingBasket = true;
             state.count = payload.count;
             state.shoppingBasketList = payload.list;
+            state.isLoadingShoppingBasket = false;
         }
     }
 });

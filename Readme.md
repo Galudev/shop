@@ -4,7 +4,7 @@
 
 ## Nuevas funcionalidades
 * Implementar el envío de mensajes (contacto y formalizar compra).
-* Pantalla de carga.
+* Mismo tamaño para todas las tarjetas.
 
 ## Modificaciones/Implementaciones con impacto por estudiar
 * Modificar las opciones de filtro por categoría para automatizarlo en el Navbar.

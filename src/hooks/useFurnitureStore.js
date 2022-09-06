@@ -5,7 +5,7 @@ import { onLoadFurnitureList } from "../store";
 export const useFurnitureStore = () => {
 
     const dispatch = useDispatch();
-    const { furnitureList } = useSelector(state => state.furniture);
+    const { furnitureList, isLoadingFurniture } = useSelector(state => state.furniture);
 
     const startLoadingFurniture = async () => {
         try {
@@ -18,6 +18,7 @@ export const useFurnitureStore = () => {
     }
     return {
         furnitureList,
+        isLoadingFurniture,
 
         startLoadingFurniture
     }

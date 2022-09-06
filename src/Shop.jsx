@@ -2,7 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar, RepeatedItem } from "./components";
 import queryString from 'query-string';
 import { getFurnitureList } from "./helpers";
-import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage, BuyPage } from "./pages";
+import { Contact, ShopList, BasketList, ItemDetails, ShopFilter, LoginPage, RegisterPage, BuyPage, LoadingPage } from "./pages";
 import { useAuthStore, useFurnitureStore } from "./hooks";
 import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
@@ -12,7 +12,7 @@ export const Shop = () => {
     const location = useLocation();
     const { q = '' } = queryString.parse(location.search);
 
-    const { startLoadingFurniture, furnitureList } = useFurnitureStore();
+    const { startLoadingFurniture, furnitureList, isLoadingFurniture } = useFurnitureStore();
     const { isLogged, checkAuthToken } = useAuthStore();
     const { getFurnitureByName } = getFurnitureList(furnitureList);
     const [furnitureListByName, setFurnitureListByName] = useState([]);
@@ -25,6 +25,12 @@ export const Shop = () => {
     useEffect(() => {
         setFurnitureListByName(getFurnitureByName(q));
     }, [q]);
+
+    if (isLogged === 'checking' || isLoadingFurniture) {
+        return (
+            <LoadingPage />
+        )
+    }
 
     return (
         <>

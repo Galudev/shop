@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { LoadingPage } from "..";
 import { EmptyList } from "../../components";
 import { getFurnitureList } from "../../helpers"
 import { useFurnitureStore, useShoppingBasketStore } from "../../hooks";
@@ -9,7 +10,7 @@ export const BasketList = () => {
 
     const navigate = useNavigate();
 
-    const { shoppingBasketList } = useShoppingBasketStore();
+    const { shoppingBasketList, isLoadingShoppingBasket } = useShoppingBasketStore();
     const { furnitureList } = useFurnitureStore();
 
     const { getFurnitureById } = getFurnitureList(furnitureList);
@@ -23,6 +24,12 @@ export const BasketList = () => {
 
     const onClickBuy = () => {
         navigate('/buy');
+    }
+
+    if (isLoadingShoppingBasket) {
+        return (
+            <LoadingPage />
+        )
     }
 
     return (

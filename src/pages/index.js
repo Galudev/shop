@@ -6,3 +6,4 @@ export * from './shoppingBasket/BuyPage';
 export * from './contact/Contact';
 export * from './auth/LoginPage';
 export * from './auth/RegisterPage';
+export * from './LoadingPage';
