@@ -27,6 +27,7 @@ export const BuyPage = () => {
 
     const { direction, card, onInputChange, onResetForm, directionValid, cardValid, isFormValid } = useForm(contactFormFields, formValidations);
     const { user } = useAuthStore();
+    const { startDeletingAllItems } = useShoppingBasketStore();
 
     const onSend = async (event) => {
         event.preventDefault();
@@ -39,7 +40,7 @@ export const BuyPage = () => {
             const isSend = await sendEmail('Compra', messageEmail);
             if (isSend) {
                 onResetForm();
-                // TODO: Limpiar el carrito
+                startDeletingAllItems();
             }
         } else {
             Swal.fire('Error', 'No se ha podido realizar el pago. Inténtelo de nuevo más tarde o póngase en contacto con el servicio de atención al cliente.', 'error');

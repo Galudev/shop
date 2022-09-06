@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { shopApi } from "../api";
-import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoad } from "../store";
+import { onActive, onAddItem, onDecrementItem, onDeleteItem, onIncrementItem, onLoad, onDeleteAll } from "../store";
 import { useDialogStore } from "./useDialogStore";
 
 
@@ -63,6 +63,15 @@ export const useShoppingBasketStore = () => {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const startDeletingAllItems = async () => {
+        try {
+            await shopApi.delete('/basket');
+            dispatch(onDeleteAll())
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return {
@@ -75,6 +84,7 @@ export const useShoppingBasketStore = () => {
         startAddingItem,
         startIncrementingItem,
         startDeletingItem,
-        startDecrementingItem
+        startDecrementingItem,
+        startDeletingAllItems
     }
 }
