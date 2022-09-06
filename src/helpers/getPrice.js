@@ -1,10 +1,11 @@
 import { getFurnitureList } from "./getFurnitureList";
 
 
-export const getPrice = (furnitureList, list) => {
+export const getPrice = (list, furnitureList) => {
+    const { getFurnitureById } = getFurnitureList(furnitureList);
     let price = 0;
     list.map(item => {
-        price += item.count * getFurnitureList(furnitureList).getFurnitureById(item.id).price;
+        price += item.count * getFurnitureById(item.id).price;
     });
-    return price;
+    return price.toFixed(2);
 }
