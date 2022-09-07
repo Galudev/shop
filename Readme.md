@@ -6,6 +6,3 @@
 * Añadir variables de entorno para la URL del backend.
 * Añadir paginación cuando hay muchos elementos que mostrar.
 * El texto solo se desliza cuando es necesario.
-
-## Modificaciones/Implementaciones con impacto por estudiar
-* Modificar las opciones de filtro por categoría para automatizarlo en el Navbar.
