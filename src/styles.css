@@ -56,3 +56,9 @@ body {
     opacity: 1;
     transition: opacity 500ms;
 }
+
+.marquee {
+    white-space: nowrap;
+    width: fit-content;
+    display: inline;
+}

@@ -1,3 +1,4 @@
+import Marquee from "react-fast-marquee";
 import { useParams } from "react-router-dom";
 import { getFurnitureList } from "../../helpers";
 import { useShoppingBasketStore, useFurnitureStore } from "../../hooks";
@@ -26,7 +27,12 @@ export const ItemDetails = () => {
                     </div>
                     <div className="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-8 card-body p-4 m-0 d-flex justify-content-between flex-column">
                         <div className="row">
-                            <h5 className="card-title fs-2">{furniture.name}</h5>
+                            <div className="marquee">
+                                <Marquee gradient={false} play={true}>
+                                    <span className="card-title fs-2">{furniture.name}</span>
+                                    &nbsp; &nbsp; &nbsp;
+                                </Marquee>
+                            </div>
                             <p className="card-text fs-5 mb-2">{`${furniture.price.toFixed(2)}€`}</p>
                             <p className="card-text mb-2">{furniture.description}</p>
                         </div>
