@@ -9,12 +9,13 @@ const contactFormFields = {
 };
 
 const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.<>]).{8,16}$/;
+const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/;
+const regexPassword2 = /["<>]/
 
 const formValidations = {
     name: [(value) => value.length > 0, 'El nombre es obligatorio'],
     email: [(value) => regexEmail.test(value), 'Introduzca un correo electrónico válido'],
-    password: [(value) => regexPassword.test(value), 'La contraseña debe tener entre 8 y 16 caracteres y al menos un dígito, una minúscula, una mayúscula y un caracter no alfanumérico (#?!@$%^&*-.<>).']
+    password: [(value) => regexPassword.test(value) && !regexPassword2.test(value), 'La contraseña debe tener más de 8 caracteres y contener al menos un dígito, una minúscula, una mayúscula y un símbolo.']
 }
 
 export const RegisterPage = () => {
@@ -69,7 +70,7 @@ export const RegisterPage = () => {
                         <div className="mb-3">
                             <label htmlFor="floatingInput">Contraseña</label>
                             <input
-                                type="password"
+                                type="text"
                                 className={`form-control form-field-contact ${(!!passwordValid && formSubmitted) ? 'is-invalid' : ''}`}
                                 placeholder="********"
                                 name='password'
