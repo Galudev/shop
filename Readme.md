@@ -5,4 +5,3 @@
 ## Nuevas funcionalidades
 * Añadir variables de entorno para la URL del backend.
 * Añadir paginación cuando hay muchos elementos que mostrar.
-* El texto solo se desliza cuando es necesario.
